@@ -1,0 +1,20 @@
+1 | saludo | hola,buenas,buen día,buenas tardes,buenas noches | ¡Hola! ¿Cómo estás? Soy tu asistente de informática para principiantes.
+2 | despedida | adiós,chau,salir,hasta luego,nos vemos | ¡Hasta pronto! Fue un placer charlar contigo sobre informática.
+3 | hardware | hardware,componentes,partes,computadora,pc | El hardware es la parte física del computador: todos los componentes que podés tocar.
+4 | software | software,programa,aplicación,sistema | El software es el conjunto de programas e instrucciones que hacen funcionar el hardware.
+5 | cpu | cpu,procesador,unidad central | La CPU es el cerebro del computador: interpreta y ejecuta las instrucciones del software.
+6 | memoria | memoria,ram,almacenamiento,volátil | La memoria RAM guarda temporalmente los datos mientras el equipo está encendido.
+7 | disco duro | disco,disco duro,hdd,ssd,almacenar | El disco duro almacena de forma permanente tus archivos y programas.
+8 | internet | internet,web,navegador,red,conexión | Internet es una red global que conecta millones de computadoras en todo el mundo.
+9 | archivo | archivo,documento,fichero,guardar | Un archivo es un conjunto de datos almacenados bajo un nombre en un dispositivo.
+10 | sistema operativo | sistema operativo,windows,linux,macos | El sistema operativo es el programa principal que permite usar el hardware y ejecutar otros programas.
+11 | seguridad | seguridad,contraseña,virus,protección | La seguridad informática protege tus datos y equipos frente a accesos o programas maliciosos.
+12 | virus | virus,malware,troyano,amenaza | Un virus informático es un programa dañino que puede alterar o eliminar tus archivos.
+13 | antivirus | antivirus,protección,seguridad,escaneo | Un antivirus detecta y elimina software malicioso de tu computadora.
+14 | periféricos | teclado,ratón,mouse,monitor,impresora,periféricos | Los periféricos son los dispositivos que permiten interactuar con la computadora.
+15 | red | red,router,wifi,ethernet | Una red informática conecta varios equipos para compartir información y recursos.
+16 | correo | correo,email,gmail,outlook | El correo electrónico permite enviar mensajes y archivos a través de internet.
+17 | navegador | navegador,chrome,firefox,edge,explorer | Un navegador web sirve para acceder a páginas de internet.
+18 | nube | nube,cloud,almacenamiento online | La nube es un servicio que permite guardar archivos e información en servidores de internet.
+19 | impresora | impresora,print,impresión,papel | Una impresora permite obtener copias físicas de documentos digitales.
+20 | curiosidad | dato,curioso,sabías,curiosidades | Sabías que la primera computadora electrónica, ENIAC, fue creada en 1945 y ocupaba una sala entera.
