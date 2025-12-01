@@ -75,45 +75,72 @@ begin
   Close(arch);
 end;
 
-function BuscarRespuesta(base: TBaseConocimiento; cant: integer; entrada: string; stopwords: t_string_vector; cantStop: integer): string;
+function BuscarRespuesta(base: TBaseConocimiento; cant: integer; entrada: string;
+                         stopwords: t_string_vector; cantStop: integer): string;
 var
-  palabras: t_string_vector; //palabras limpias luego de ser procesada
-  cantPal: integer;     
+  palabras: t_string_vector;       { Palabras limpias luego de procesar la entrada }
+  cantPal: integer;                { Cantidad de palabras válidas }
   i, j, k, coincidencias, mejor: integer;
   mejorRespuesta: string;
   dist: integer;
+  similitud: real;                 { Porcentaje de similitud entre palabra y keyword }
 begin
-  cantPal := 0;  
-  entrada := Minusculas(LimpiarTexto(entrada));      {pasa a minusculas}
-  SepararPalabras(entrada, palabras, cantPal);       {separa las palabras por arrays}
-  EliminarStopWords(palabras, cantPal, stopwords, cantStop);    {elimina palabras que no aportan}
+ 
+  cantPal := 0;
+  entrada := Minusculas(LimpiarTexto(entrada));        { Convierte a minúsculas y saca signos }
+  SepararPalabras(entrada, palabras, cantPal);         { Divide en palabras }
+  EliminarStopWords(palabras, cantPal, stopwords, cantStop); { Quita palabras irrelevantes }
 
   mejor := 0;
   mejorRespuesta := '';
 
+  {--- Paso 2: Buscar coincidencias en la base de conocimiento ---}
   for i := 1 to cant do
   begin
-    coincidencias := 0;       {Recorre toda la base de conocimiento y compara cada palabra del usuario con todas las keywords de cada registro.}
+    coincidencias := 0;
+
+    { Recorre cada palabra ingresada por el usuario }
     for j := 1 to cantPal do
+    begin
+      { Compara con todas las keywords del registro i }
       for k := 1 to base[i].cantKeywords do
       begin
-        dist := Levenshtein(palabras[j], base[i].keywords[k]);    {calcula las palabras claves con las procesadas procesadas del texto cuántas letras hay que cambiar para que dos palabras sean iguales}
-        if (dist <= 1) then
-          coincidencias := coincidencias + 1;                         
-      end;
+        dist := Levenshtein(palabras[j], base[i].keywords[k]);
 
-    if coincidencias > mejor then           {Si el número de coincidencias con este registro es mayor que el máximo anterior almacena la respuesta}
+        { Calcula la similitud (1 = idénticas, 0 = totalmente distintas) }
+        if Length(base[i].keywords[k]) > 0 then
+          similitud := 1 - (dist / Length(base[i].keywords[k]))
+        else
+          similitud := 0;
+
+        { Coincidencia exacta → 2 puntos }
+        if palabras[j] = base[i].keywords[k] then
+          coincidencias := coincidencias + 2
+
+        { Coincidencia aproximada (≥ 80%) → 1 punto }
+        else if similitud >= 0.8 then
+          coincidencias := coincidencias + 1;
+      end;
+    end;
+
+    { Guarda la respuesta con mayor cantidad de coincidencias }
+    if coincidencias > mejor then
     begin
       mejor := coincidencias;
       mejorRespuesta := base[i].respuesta;
     end;
   end;
 
-  { Si no hay coincidencias, respuesta que no entendio }
+  {Decide la respuesta final}
   if mejor = 0 then
     BuscarRespuesta := 'No entendí tu pregunta, ¿podés reformularla?'
+  else if (mejor = 1) and (cantPal > 2) then
+    BuscarRespuesta := '¿Podrías ser más específico? No estoy seguro de lo que quisiste decir.'
   else
     BuscarRespuesta := mejorRespuesta;
 end;
+
+
+
 
 end.

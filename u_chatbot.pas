@@ -11,7 +11,7 @@ implementation
 var
   conocimiento: TBaseConocimiento;
   cantRegistros: integer;
-  stopwords: t_string_vector;
+  stopwords: TStringArray;
   cantStop: integer;
   entrada, respuesta: string;
 
@@ -32,7 +32,7 @@ begin
       WriteLn('>: ', respuesta);
     end;
   until (Pos('salir', entrada) > 0) or (Pos('chau', entrada) > 0) or (Pos('adiós', entrada) > 0);
-  WriteLn('> : ¡Hasta luego!  :).');
+  WriteLn('> : ¡Hasta luego! Fue un gusto charlar contigo :).');
 end;
 
 end.
