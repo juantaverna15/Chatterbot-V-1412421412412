@@ -11,7 +11,7 @@ implementation
 var
   conocimiento: TBaseConocimiento;
   cantRegistros: integer;
-  stopwords: TStringArray;
+  stopwords: t_string_vector;
   cantStop: integer;
   entrada, respuesta: string;
 
@@ -19,7 +19,7 @@ procedure Conversar;
 begin
   CargarStopWords(stopwords, cantStop);
   CargarConocimiento(conocimiento, cantRegistros);
-  WriteLn('🤖 Chatbot Informático: ¡Hola! Soy tu asistente de informática para principiantes.');
+  WriteLn('Chatbot Informático: ¡Hola! Soy tu asistente de informática para principiantes.');
   WriteLn('Escribí "salir" o "chau" para terminar.');
   WriteLn;
   repeat
@@ -29,10 +29,10 @@ begin
     if (Pos('salir', entrada) = 0) and (Pos('chau', entrada) = 0) and (Pos('adiós', entrada) = 0) then
     begin
       respuesta := BuscarRespuesta(conocimiento, cantRegistros, entrada, stopwords, cantStop);
-      WriteLn('🤖 : ', respuesta);
+      WriteLn('>: ', respuesta);
     end;
   until (Pos('salir', entrada) > 0) or (Pos('chau', entrada) > 0) or (Pos('adiós', entrada) > 0);
-  WriteLn('🤖 : ¡Hasta luego! Fue un gusto charlar contigo :).');
+  WriteLn('> : ¡Hasta luego!  :).');
 end;
 
 end.

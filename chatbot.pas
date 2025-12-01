@@ -1,3 +1,4 @@
+{UTF}
 program ChatbotInformatica;
 
 uses Crt, u_chatbot;
